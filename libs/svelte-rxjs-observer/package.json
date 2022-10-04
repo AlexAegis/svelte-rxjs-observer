@@ -1,0 +1,27 @@
+{
+	"name": "svelte-rxjs-example",
+	"version": "0.1.0",
+	"displayName": "svelte-rxjs-observer",
+	"description": "A svelte component that makes observing observables easier",
+	"license": "MIT",
+	"author": {
+		"email": "alexaegis@gmail.com",
+		"name": "AlexAegis",
+		"url": "https://www.github.com/AlexAegis"
+	},
+	"homepage": "https://www.github.com/AlexAegis/svelte-rxjs-observer#readme",
+	"repository": "github:AlexAegis/svelte-rxjs-observer",
+	"bugs": {
+		"url": "https://www.github.com/AlexAegis/svelte-rxjs-observer/issues"
+	},
+	"keywords": [
+		"sveltejs",
+		"rxjs",
+		"reactive",
+		"ts",
+		"typescript",
+		"js",
+		"javascript"
+	],
+	"private": false
+}

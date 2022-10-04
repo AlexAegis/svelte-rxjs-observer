@@ -1,0 +1,31 @@
+{
+	"$schema": "./node_modules/nx/schemas/nx-schema.json",
+	"npmScope": "svelte-rxjs-observer",
+	"affected": {
+		"defaultBase": "master"
+	},
+	"cli": {
+		"packageManager": "npm"
+	},
+	"implicitDependencies": {
+		"package.json": {
+			"dependencies": "*",
+			"devDependencies": "*"
+		},
+		".eslintrc.json": "*"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"cacheableOperations": ["build", "lint", "test", "e2e"]
+			}
+		}
+	},
+	"defaultProject": "example",
+	"targetDefaults": {
+		"build": {
+			"dependsOn": ["^build"]
+		}
+	}
+}

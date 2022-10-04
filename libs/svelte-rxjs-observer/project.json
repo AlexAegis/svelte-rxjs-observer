@@ -1,0 +1,49 @@
+{
+	"name": "svelte-rxjs-observer",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/svelte-rxjs-observer/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/svelte-rxjs-observer/**/*.{ts,svelte,spec.ts}"]
+			}
+		},
+		"check": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "svelte-check",
+				"cwd": "libs/svelte-rxjs-observer"
+			}
+		},
+		"build": {
+			"executor": "@nxext/vite:package",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"entryFile": "src/index.ts",
+				"frameworkConfigFile": "@nxext/svelte/plugins/vite",
+				"outputPath": "dist/libs/svelte-rxjs-observer",
+				"assets": [
+					{
+						"glob": "/*",
+						"input": "./public/**",
+						"output": "./"
+					}
+				],
+				"tsConfig": "libs/svelte-rxjs-observer/tsconfig.lib.json"
+			},
+			"configurations": {
+				"production": {}
+			}
+		},
+		"test": {
+			"executor": "@nxext/vitest:vitest",
+			"options": {
+				"command": "run"
+			}
+		}
+	}
+}
