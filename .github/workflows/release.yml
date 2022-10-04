@@ -48,9 +48,9 @@ jobs:
           npm run build:example -- --baseHref '/${{ github.event.repository.name }}/'
       - name: Use index.html as 404.html
         run: |
-          cp ./dist/apps/angular/index.html ./dist/apps/angular/404.html
-      - name: Deploy Angular Example to Github Pages
+          cp ./dist/apps/example/index.html ./dist/apps/example/404.html
+      - name: Deploy Example to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/apps/angular
+          publish_dir: ./dist/apps/example

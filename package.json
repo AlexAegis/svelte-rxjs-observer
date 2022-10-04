@@ -2,7 +2,7 @@
 	"name": "svelte-rxjs-observer",
 	"displayName": "svelte-rxjs-observer",
 	"description": "A svelte component that makes observing obsevables easier",
-	"version": "0.1.0",
+	"version": "0.2.1",
 	"license": "MIT",
 	"author": {
 		"email": "alexaegis@gmail.com",
