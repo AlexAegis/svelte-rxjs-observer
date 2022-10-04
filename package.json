@@ -61,8 +61,7 @@
 		"@nxext/svelte": "^14.0.2",
 		"@nxext/vite": "15.0.0-alpha.5",
 		"rxjs": "7.5.7",
-		"tslib": "^2.4.0",
-		"zone.js": "~0.11.8"
+		"tslib": "^2.4.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "~17.1.2",

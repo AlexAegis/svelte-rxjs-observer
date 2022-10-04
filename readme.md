@@ -2,6 +2,7 @@
 
 [![Latest NPM Version](https://img.shields.io/npm/v/svelte-rxjs-observer/latest)](https://www.npmjs.com/package/svelte-rxjs-observer)
 [![CI](https://github.com/AlexAegis/svelte-rxjs-observer/workflows/CI/badge.svg)](https://github.com/AlexAegis/svelte-rxjs-observer/actions?query=workflow%3ACI)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c2f27ff062b74be1a141e215bdd39fcb)](https://www.codacy.com/gh/AlexAegis/svelte-rxjs-observer/dashboard?utm_source=github.com&utm_medium=referral&utm_content=AlexAegis/svelte-rxjs-observer&utm_campaign=Badge_Grade)
 
 A tiny component that observes observables for you
 
