@@ -47,3 +47,5 @@ typedocs
 .cache
 .angular
 .svelte-kit
+
+coverage

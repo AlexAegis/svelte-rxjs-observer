@@ -50,6 +50,23 @@ describe('observer', () => {
 		await assertExists(secondEmit);
 	});
 
+	it('should unsubscribe when the component destroys itself', async () => {
+		expect(subject.observed).toBeTruthy();
+		const nextSubject = new Subject<string>();
+		instance.rerender({ props: { subject: nextSubject } });
+		expect(subject.observed).toBeFalsy();
+		expect(nextSubject.observed).toBeTruthy();
+	});
+
+	it('should not break even if the observable itself is nullish', async () => {
+		instance.unmount();
+		instance = render(ObserverTest, { props: { subject: null } });
+		instance.rerender({ props: { subject: null } });
+		expect(instance.component).toBeTruthy();
+		instance.rerender({ props: { subject: undefined } });
+		expect(instance.component).toBeTruthy();
+	});
+
 	it('should not emit after the observable completes, but resubscribe to a new observable', async () => {
 		const firstEmit = 'foo';
 		const secondEmit = 'bar';

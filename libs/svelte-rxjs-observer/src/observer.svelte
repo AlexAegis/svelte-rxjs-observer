@@ -31,8 +31,10 @@
 		completed = false;
 		pending = true;
 		error = undefined;
-		next = undefined;
-		subscription?.unsubscribe();
+		next = undefined as T;
+		if (subscription) {
+			subscription.unsubscribe();
+		}
 		subscription = observable?.subscribe({
 			next: (n) => {
 				next = n;

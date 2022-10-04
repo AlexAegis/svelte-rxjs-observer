@@ -42,7 +42,7 @@
 		"test": {
 			"executor": "@nxext/vitest:vitest",
 			"options": {
-				"command": "run"
+				"command": "run --coverage"
 			}
 		}
 	}
