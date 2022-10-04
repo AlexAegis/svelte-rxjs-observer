@@ -34,7 +34,7 @@ jobs:
         run: npm install
       - name: Build all except apps
         run: |
-          npm run build -- --exclude example
+          npm run build:lib
       - name: Release svelte-rxjs-observer on NPM
         if: env.IS_ON_NPM_OBSERVER != 'true'
         env:

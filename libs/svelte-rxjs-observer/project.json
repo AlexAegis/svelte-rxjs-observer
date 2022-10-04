@@ -19,6 +19,23 @@
 				"cwd": "libs/svelte-rxjs-observer"
 			}
 		},
+		"supersimplebuild": {
+			"executor": "@nrwl/js:tsc",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/svelte-rxjs-observer",
+				"main": "libs/svelte-rxjs-observer/src/index.ts",
+				"tsConfig": "libs/svelte-rxjs-observer/tsconfig.lib.json",
+				"assets": [
+					"libs/svelte-rxjs-observer/*.md",
+					{
+						"glob": "*.svelte",
+						"input": "./libs/svelte-rxjs-observer/src/",
+						"output": "./src"
+					}
+				]
+			}
+		},
 		"build": {
 			"executor": "@nxext/vite:package",
 			"outputs": ["{options.outputPath}"],
