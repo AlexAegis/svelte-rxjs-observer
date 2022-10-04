@@ -28,6 +28,7 @@
 				"tsConfig": "libs/svelte-rxjs-observer/tsconfig.lib.json",
 				"assets": [
 					"libs/svelte-rxjs-observer/*.md",
+					"readme.md",
 					{
 						"glob": "*.svelte",
 						"input": "./libs/svelte-rxjs-observer/src/",
