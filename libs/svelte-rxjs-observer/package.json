@@ -1,5 +1,5 @@
 {
-	"name": "svelte-rxjs-example",
+	"name": "svelte-rxjs-observer",
 	"version": "0.2.1",
 	"displayName": "svelte-rxjs-observer",
 	"description": "A svelte component that makes observing observables easier",
