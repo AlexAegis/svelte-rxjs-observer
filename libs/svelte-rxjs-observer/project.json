@@ -19,38 +19,16 @@
 				"cwd": "libs/svelte-rxjs-observer"
 			}
 		},
-		"supersimplebuild": {
-			"executor": "@nrwl/js:tsc",
-			"outputs": ["{options.outputPath}"],
-			"options": {
-				"outputPath": "dist/libs/svelte-rxjs-observer",
-				"main": "libs/svelte-rxjs-observer/src/index.ts",
-				"tsConfig": "libs/svelte-rxjs-observer/tsconfig.lib.json",
-				"assets": [
-					"libs/svelte-rxjs-observer/*.md",
-					"readme.md",
-					{
-						"glob": "*.svelte",
-						"input": "./libs/svelte-rxjs-observer/src/",
-						"output": "./src"
-					}
-				]
-			}
-		},
 		"build": {
 			"executor": "@nxext/vite:package",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"entryFile": "src/index.ts",
+				"entryFile": "src/lib/index.ts",
 				"frameworkConfigFile": "@nxext/svelte/plugins/vite",
+				"sourcemaps": true,
+				"configFile": "libs/svelte-rxjs-observer/vite.config.ts",
 				"outputPath": "dist/libs/svelte-rxjs-observer",
-				"assets": [
-					{
-						"glob": "/*",
-						"input": "./public/**",
-						"output": "./"
-					}
-				],
+				"assets": ["libs/svelte-rxjs-observer/*.md"],
 				"tsConfig": "libs/svelte-rxjs-observer/tsconfig.lib.json"
 			},
 			"configurations": {

@@ -48,5 +48,7 @@
 			"fileMatch": ["typedoc.json"],
 			"url": "https://json.schemastore.org/typedoc"
 		}
-	]
+	],
+	"vitest.enable": true,
+	"vitest.commandLine": "npx vitest --watch -- "
 }

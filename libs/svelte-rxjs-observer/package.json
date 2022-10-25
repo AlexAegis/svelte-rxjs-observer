@@ -23,5 +23,9 @@
 		"js",
 		"javascript"
 	],
-	"private": false
+	"main": "index.js",
+	"private": false,
+	"peerDependencies": {
+		"rxjs": "*"
+	}
 }

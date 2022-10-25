@@ -54,7 +54,7 @@
 		"release:major": "standard-version --release-as major",
 		"start": "nx serve",
 		"build": "nx run-many --parallel 4 --target build --configuration production",
-		"build:lib": "nx run svelte-rxjs-observer:supersimplebuild",
+		"build:lib": "cd libs/svelte-rxjs-observer && svelte-package && rm -rf ../../dist/libs/svelte-rxjs-observer && mkdir -p ../../dist/libs/svelte-rxjs-observer && mv package/* ../../dist/libs/svelte-rxjs-observer",
 		"build:example": "nx run example:build --configuration production",
 		"test": "nx run-many --parallel 4 --target test --coverage"
 	},
@@ -75,6 +75,7 @@
 		"@nrwl/workspace": "15.0.1",
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "1.0.0-next.524",
+		"@sveltejs/package": "^1.0.0-next.5",
 		"@sveltejs/vite-plugin-svelte": "^1.0.9",
 		"@testing-library/svelte": "^3.2.2",
 		"@tsconfig/svelte": "^3.0.0",
@@ -118,6 +119,8 @@
 		"ts-node": "10.9.1",
 		"tsconfig-paths": "^4.1.0",
 		"typescript": "4.8.4",
+		"vite-plugin-dts": "^1.6.6",
+		"vite-plugin-static-copy": "^0.11.0",
 		"vitest": "^0.24.3",
 		"webpack-bundle-analyzer": "~4.6.1"
 	}
