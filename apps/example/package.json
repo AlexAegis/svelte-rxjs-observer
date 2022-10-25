@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"start": "vite --host",
-		"build": "vite build",
+		"build": "vite build --base=${BASE_HREF-/}",
 		"lint:es": "eslint --max-warnings=0 .",
 		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
 		"lint:style": "stylelint --allow-empty-input src/**/*.{css,scss}",

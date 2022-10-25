@@ -111,7 +111,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Build
-        run: npm run build -- -- --base=/${{ github.event.repository.name }}/
+        run: BASE_HREF="/${{ github.event.repository.name }}/" npm run build --scope="example"
       - name: Use index.html as 404.html
         run: |
           cp apps/example/dist/index.html apps/example/dist/404.html
