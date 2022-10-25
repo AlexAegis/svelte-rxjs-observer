@@ -1,5 +1,5 @@
 // For the glob features check out https://github.com/micromatch/micromatch
-module.exports = {
+export default {
 	'*.(ts|js)': ['eslint --max-warnings=0', 'prettier --check'],
 	'*.(css|scss)': ['stylelint', 'prettier --check'],
 	'(*.json|.eslintrc|.prettierrc|.stylelintrc|.markdownlintrc)': [('eslint', 'prettier --check')],

@@ -40,7 +40,7 @@
 	"files.associations": {
 		"*.json": "jsonc"
 	},
-	"liveServer.settings.root": "dist/apps/example",
+	"liveServer.settings.root": "apps/example/dist",
 	"terminal.integrated.windowsEnableConpty": true,
 	"prettier.prettierPath": "node_modules/prettier",
 	"json.schemas": [
@@ -50,5 +50,5 @@
 		}
 	],
 	"vitest.enable": true,
-	"vitest.commandLine": "npx vitest --watch -- "
+	"vitest.commandLine": "npx vitest --"
 }

@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const foldersToCheck = ['libs', 'apps'];
 
@@ -11,7 +11,7 @@ const libs = foldersToCheck
 	)
 	.filter((p) => fs.existsSync(p));
 
-module.exports = {
+export default {
 	bumpFiles: [
 		'package.json',
 		{

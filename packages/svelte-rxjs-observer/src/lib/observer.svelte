@@ -12,7 +12,7 @@
 			last: T | undefined;
 			error: unknown;
 		};
-		pending: {};
+		pending: never;
 		completed: {
 			last: T | undefined;
 		};

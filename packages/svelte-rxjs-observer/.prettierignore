@@ -10,6 +10,6 @@ CHANGELOG.md
 package-lock.json
 yarn.lock
 public/build
-
+package
 node_modules
 .nyc_output

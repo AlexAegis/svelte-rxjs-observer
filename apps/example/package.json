@@ -1,4 +1,21 @@
 {
 	"name": "example",
-	"version": "0.2.2"
+	"version": "0.2.2",
+	"type": "module",
+	"scripts": {
+		"start": "vite --host",
+		"build": "vite build",
+		"lint:es": "eslint --max-warnings=0 .",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
+		"lint:style": "stylelint --allow-empty-input src/**/*.{css,scss}",
+		"lint:md": "markdownlint --ignore-path '../../.gitignore' .",
+		"lint:rmd": "remark .",
+		"lint:format": "prettier --check .",
+		"preview": "vite preview",
+		"test": "vitest --passWithNoTests --run"
+	},
+	"dependencies": {
+		"rxjs": "^7.5.7",
+		"svelte-rxjs-observer": "*"
+	}
 }

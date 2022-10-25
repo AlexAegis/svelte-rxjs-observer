@@ -49,3 +49,10 @@ typedocs
 .svelte-kit
 
 coverage
+
+vite.config.ts.*
+vite.config.js.*
+
+.turbo
+dist
+package

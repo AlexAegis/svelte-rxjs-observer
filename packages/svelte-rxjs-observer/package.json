@@ -23,8 +23,23 @@
 		"js",
 		"javascript"
 	],
-	"main": "index.js",
+	"type": "module",
 	"private": false,
+	"publishConfig": {
+		"directory": "dist"
+	},
+	"main": "src/lib/index.ts",
+	"scripts": {
+		"build": "svelte-package",
+		"lint:es": "eslint --max-warnings=0 .",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
+		"lint:style": "stylelint --allow-empty-input src/**/*.{css,scss}",
+		"lint:md": "markdownlint --ignore-path '../../.gitignore' .",
+		"lint:rmd": "remark .",
+		"lint:format": "prettier --check .",
+		"preview": "vite preview",
+		"test": "vitest --coverage --passWithNoTests --run"
+	},
 	"peerDependencies": {
 		"rxjs": "*"
 	}
