@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/AlexAegis/svelte-rxjs-observer/compare/v0.2.2...v0.3.0) (2022-10-26)
+
+
+### Features
+
+* migrated to turborepo ([8e5df82](https://github.com/AlexAegis/svelte-rxjs-observer/commit/8e5df82995b30e38b0797db32fc724468f3aaa10))
+
 ### 0.2.2 (2022-10-25)
 
 
