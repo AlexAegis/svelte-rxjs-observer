@@ -1,9 +1,10 @@
 {
 	"name": "svelte-rxjs-observer",
-	"version": "0.3.0",
 	"displayName": "svelte-rxjs-observer",
 	"description": "A svelte component that makes observing observables easier",
+	"version": "0.3.0",
 	"license": "MIT",
+	"private": false,
 	"author": {
 		"email": "alexaegis@gmail.com",
 		"name": "AlexAegis",
@@ -15,32 +16,64 @@
 		"url": "https://www.github.com/AlexAegis/svelte-rxjs-observer/issues"
 	},
 	"keywords": [
-		"sveltejs",
-		"rxjs",
-		"reactive",
-		"ts",
-		"typescript",
+		"@alexaegis/setup-depcheck",
+		"@alexaegis/setup-eslint",
+		"@alexaegis/setup-prettier",
+		"@alexaegis/setup-remark",
+		"@alexaegis/setup-ts-node",
+		"@alexaegis/setup-vite-lib",
+		"@alexaegis/setup-vitest-node",
+		"javascript",
 		"js",
-		"javascript"
+		"reactive",
+		"rxjs",
+		"sveltejs",
+		"ts",
+		"typescript"
 	],
 	"type": "module",
-	"private": false,
 	"publishConfig": {
 		"directory": "dist"
 	},
 	"main": "src/lib/index.ts",
 	"scripts": {
-		"build": "svelte-package",
-		"lint:es": "eslint --max-warnings=0 .",
-		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
+		"build": "turbo run build-lib_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"build-lib_": "vite build",
+		"lint:depcheck": "turbo run lint:depcheck_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"lint:depcheck_": "depcheck",
+		"lint:es": "turbo run lint:es_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"lint:es_": "eslint --max-warnings=0 --fix --no-error-on-unmatched-pattern .",
+		"lint:format": "turbo run lint:format_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"lint:format_": "prettier --check .",
+		"lint:md": "turbo run lint:md_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"lint:md_": "remark --frail --no-stdout --silently-ignore *.md docs/**/*.md",
 		"lint:style": "stylelint --allow-empty-input src/**/*.{css,scss}",
-		"lint:md": "markdownlint --ignore-path '../../.gitignore' .",
-		"lint:rmd": "remark .",
-		"lint:format": "prettier --check .",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
+		"lint:tsc": "turbo run lint:tsc_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"lint:tsc_": "tsc --noEmit",
+		"format": "prettier --write .",
 		"preview": "vite preview",
-		"test": "vitest --coverage --passWithNoTests --run"
+		"test": "turbo run test_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"test_": "vitest --passWithNoTests --coverage --run",
+		"test:watch": "vitest --passWithNoTests --coverage"
 	},
 	"peerDependencies": {
 		"rxjs": "*"
+	},
+	"devDependencies": {
+		"@alexaegis/eslint-config-vitest": "^0.2.0",
+		"@alexaegis/ts": "^0.2.0",
+		"@alexaegis/vite": "^0.2.0",
+		"@alexaegis/vitest": "^0.2.0",
+		"@sveltejs/kit": "^1.15.7",
+		"@testing-library/svelte": "^3.2.2",
+		"@types/node": "^18.15.13",
+		"svelte-preprocess": "^5.0.3",
+		"vite": "^4.3.1",
+		"vite-plugin-autolib": "^0.1.0",
+		"vitest": "^0.30.1"
+	},
+	"dependencies": {
+		"svelte": "^3.58.0"
 	}
 }

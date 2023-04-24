@@ -1,4 +1,1 @@
-import Observer from './observer.svelte';
-
-export { Observer };
-export default Observer;
+export { default as Observer, default } from './observer.svelte';

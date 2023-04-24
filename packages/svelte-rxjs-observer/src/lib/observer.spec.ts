@@ -1,4 +1,4 @@
-import { render, RenderResult, waitFor } from '@testing-library/svelte';
+import { render, waitFor, type RenderResult } from '@testing-library/svelte';
 import { Subject } from 'rxjs';
 import { beforeEach, describe, expect, it } from 'vitest';
 import ObserverTest from './observer-test.svelte';

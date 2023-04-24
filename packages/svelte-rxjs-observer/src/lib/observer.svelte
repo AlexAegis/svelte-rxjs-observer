@@ -49,11 +49,11 @@
 </script>
 
 {#if completed}
-	<slot name="completed" last={next} />
+	<slot name="completed" last="{next}" />
 {:else if error}
-	<slot name="error" {error} last={next} />
+	<slot name="error" error="{error}" last="{next}" />
 {:else if pending}
 	<slot name="pending" />
 {:else}
-	<slot {next} />
+	<slot next="{next}" />
 {/if}

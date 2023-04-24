@@ -1,21 +1,62 @@
 {
 	"name": "example",
 	"version": "0.3.0",
+	"keywords": [
+		"@alexaegis/setup-eslint",
+		"@alexaegis/setup-prettier",
+		"@alexaegis/setup-remark",
+		"@alexaegis/setup-stylelint",
+		"@alexaegis/setup-ts-svelte",
+		"@alexaegis/setup-vite-svelte",
+		"@alexaegis/setup-vitest-web"
+	],
 	"type": "module",
 	"scripts": {
-		"start": "vite --host",
-		"build": "vite build --base=${BASE_HREF-/}",
-		"lint:es": "eslint --max-warnings=0 .",
+		"build": "turbo run build-app_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"build-app_": "vite build",
+		"lint:es": "turbo run lint:es_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:es_": "eslint --max-warnings=0 --fix --no-error-on-unmatched-pattern .",
+		"lint:format": "turbo run lint:format_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:format_": "prettier --check .",
+		"lint:md": "turbo run lint:md_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:md_": "remark --frail --no-stdout --silently-ignore *.md docs/**/*.md",
+		"lint:style": "turbo run lint:style_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:style:css": "turbo run lint:style:css_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:style:css_": "stylelint --cache true --cache-strategy content --cache-location .cache/stylelintcache-css ./**/*.css",
+		"lint:style:scss": "turbo run lint:style:scss_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:style:scss_": "stylelint --customSyntax=postcss-scss --cache true --cache-strategy content --cache-location .cache/stylelintcache-scss ./**/*.scss",
 		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json",
-		"lint:style": "stylelint --allow-empty-input src/**/*.{css,scss}",
-		"lint:md": "markdownlint --ignore-path '../../.gitignore' .",
-		"lint:rmd": "remark .",
-		"lint:format": "prettier --check .",
+		"lint:tsc": "turbo run lint:tsc_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"lint:tsc_": "tsc --noEmit",
+		"dev": "concurrently npm:watch-deps npm:start",
+		"format": "prettier --write .",
 		"preview": "vite preview",
-		"test": "vitest --passWithNoTests --run"
+		"start": "vite",
+		"test": "turbo run test_ --concurrency 6 --cache-dir .cache/turbo --filter example",
+		"test_": "vitest --passWithNoTests --coverage --run",
+		"test:watch": "vitest --passWithNoTests --coverage",
+		"watch-deps": "nodemon --config ../../node_modules/@alexaegis/setup-vite/static/nodemon.json --watch ./node_modules/**/src/**/* --ext ts,tsx,mts,cts,svelte,js,jsx,mjs,cjs,json --ignore dist --exec 'turbo run build-lib_ --concurrency 6 --cache-dir .cache/turbo --filter example'"
 	},
 	"dependencies": {
-		"rxjs": "^7.5.7",
-		"svelte-rxjs-observer": "*"
+		"carbon-components-svelte": "^0.73.5",
+		"carbon-icons-svelte": "^11.4.0",
+		"rxjs": "^7.8.0",
+		"svelte": "^3.58.0",
+		"svelte-rxjs-observer": "workspace:^"
+	},
+	"devDependencies": {
+		"@alexaegis/eslint-config-vitest": "^0.2.0",
+		"@alexaegis/stylelint-config": "^0.2.0",
+		"@alexaegis/ts": "^0.2.0",
+		"@alexaegis/vite": "^0.2.0",
+		"@alexaegis/vitest": "^0.2.0",
+		"@testing-library/svelte": "^3.2.2",
+		"concurrently": "^8.0.1",
+		"nodemon": "^2.0.22",
+		"postcss-scss": "^4.0.6",
+		"stylelint": "15.5.0",
+		"svelte-preprocess": "^5.0.3",
+		"vite": "^4.3.1",
+		"vitest": "^0.30.1"
 	}
 }

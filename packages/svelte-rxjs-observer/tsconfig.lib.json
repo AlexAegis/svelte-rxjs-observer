@@ -1,9 +1,0 @@
-{
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
-		"outDir": "../../dist/out-tsc"
-	},
-	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte"],
-	"exclude": ["**/*.spec.ts", "public/*"]
-}
