@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
 	import type { Observable, Subscription } from 'rxjs';
 	import { onDestroy } from 'svelte';
 
@@ -22,7 +22,7 @@
 
 	let completed = false;
 	let pending = true;
-	let next: T;
+	let next!: T;
 	let error: unknown | undefined = undefined;
 
 	let subscription: Subscription | undefined;
@@ -35,12 +35,14 @@
 		if (subscription) {
 			subscription.unsubscribe();
 		}
-		subscription = observable?.subscribe({
+		subscription = observable.subscribe({
 			next: (n) => {
-				next = n;
+				next = n as unknown as T;
 				pending = false;
 			},
-			error: (e) => (error = e),
+			error: (e) => {
+				error = e;
+			},
 			complete: () => (completed = true),
 		});
 	}

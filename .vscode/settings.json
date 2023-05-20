@@ -71,6 +71,7 @@
 		".prettierrc.*": ".prettierignore",
 		".stylelintrc.*": ".stylelintignore"
 	},
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "svelte"],
 	"files.associations": {
 		"*.json": "jsonc",
 		".stylelintrc": "jsonc"

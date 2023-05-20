@@ -50,7 +50,7 @@ describe('observer', () => {
 		await assertExists(secondEmit);
 	});
 
-	it('should unsubscribe when the component destroys itself', async () => {
+	it('should unsubscribe when the component destroys itself', () => {
 		expect(subject.observed).toBeTruthy();
 		const nextSubject = new Subject<string>();
 		instance.rerender({ props: { subject: nextSubject } });
@@ -58,9 +58,12 @@ describe('observer', () => {
 		expect(nextSubject.observed).toBeTruthy();
 	});
 
-	it('should not break even if the observable itself is nullish', async () => {
+	it('should not break even if the observable itself is nullish', () => {
 		instance.unmount();
+		// ? Explicitly checking nulls
+		// eslint-disable-next-line unicorn/no-null
 		instance = render(ObserverTest, { props: { subject: null } });
+		// eslint-disable-next-line unicorn/no-null
 		instance.rerender({ props: { subject: null } });
 		expect(instance.component).toBeTruthy();
 		instance.rerender({ props: { subject: undefined } });
