@@ -1,11 +1,3 @@
-// librarySvelteViteConfig
-import { libraryViteConfig } from '@alexaegis/vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
-import { defineConfig, mergeConfig } from 'vite';
+// managed-by-autotool
 
-export default mergeConfig(
-	libraryViteConfig,
-	defineConfig({
-		plugins: [svelte({})],
-	})
-);
+export { svelteLibViteConfig as default } from '@alexaegis/vite';

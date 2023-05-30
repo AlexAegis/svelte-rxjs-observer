@@ -12,7 +12,7 @@
 			last: T | undefined;
 			error: unknown;
 		};
-		pending: never;
+		pending: unknown;
 		completed: {
 			last: T | undefined;
 		};
@@ -35,7 +35,7 @@
 		if (subscription) {
 			subscription.unsubscribe();
 		}
-		subscription = observable.subscribe({
+		subscription = observable?.subscribe({
 			next: (n) => {
 				next = n as unknown as T;
 				pending = false;
