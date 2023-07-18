@@ -9,21 +9,21 @@
 			next: T;
 		};
 		error: {
-			last: T | undefined;
+			last: T ;
 			error: unknown;
 		};
 		pending: unknown;
 		completed: {
-			last: T | undefined;
+			last: T ;
 		};
 	}
 
-	export let observable: Observable<T>;
+	export let observable: Observable<T> | undefined | null;
 
 	let completed = false;
 	let pending = true;
 	let next!: T;
-	let error: unknown | undefined = undefined;
+	let error: unknown = undefined;
 
 	let subscription: Subscription | undefined;
 

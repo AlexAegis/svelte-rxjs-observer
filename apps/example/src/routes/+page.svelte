@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Subject } from 'rxjs';
-	import packageJson from '../../../package.json';
+	import packageJson from '../../../../package.json';
 
 	import { Observer } from 'svelte-rxjs-observer';
 
@@ -14,16 +14,16 @@
 </script>
 
 <div class="app">
-	<h1>{packageJson.displayName} ({packageJson.version})</h1>
+	<h1>{packageJson.name} ({packageJson.version})</h1>
 	<div class="controls">
-		<button on:click={reset}> Reset </button>
-		<button on:click={() => subject.next((count = count + 1))}> Next </button>
-		<button on:click={() => subject.error('Error message')}> Error </button>
-		<button on:click={() => subject.complete()}> Complete </button>
+		<button on:click="{reset}"> Reset </button>
+		<button on:click="{() => subject.next((count = count + 1))}"> Next </button>
+		<button on:click="{() => subject.error('Error message')}"> Error </button>
+		<button on:click="{() => subject.complete()}"> Complete </button>
 	</div>
-
+	{$subject}
 	<div>
-		<Observer observable={subject} let:next>
+		<Observer observable="{subject}" let:next>
 			Next: {next}
 			<svelte:fragment slot="pending">Pending</svelte:fragment>
 			<svelte:fragment slot="error" let:error let:last>

@@ -3,7 +3,7 @@
 
 	import Observer from './observer.svelte';
 
-	export let subject: Subject<number>;
+	export let subject: Subject<string> | undefined | null;
 </script>
 
 <Observer observable={subject} let:next>

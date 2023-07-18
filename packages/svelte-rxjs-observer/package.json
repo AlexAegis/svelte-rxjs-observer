@@ -1,6 +1,5 @@
 {
 	"name": "svelte-rxjs-observer",
-	"displayName": "svelte-rxjs-observer",
 	"description": "A svelte component that makes observing observables easier",
 	"version": "0.3.0",
 	"license": "MIT",
@@ -32,18 +31,15 @@
 		"url": "https://www.github.com/AlexAegis/svelte-rxjs-observer/issues"
 	},
 	"type": "module",
-	"publishConfig": {
-		"directory": "dist"
-	},
 	"scripts": {
 		"build": "turbo run build-lib_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"build-lib_": "vite build",
+		"build-lib_": "pakk --svelte --target-package-json-kind development && svelte-package --input src && pakk --svelte --target-package-json-kind distribution",
 		"lint:depcheck": "turbo run lint:depcheck_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"lint:depcheck__": "depcheck",
 		"lint:es": "turbo run lint:es_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"lint:es_": "eslint --max-warnings=0 --fix --no-error-on-unmatched-pattern .",
 		"lint:format": "turbo run lint:format_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"lint:format_": "prettier --no-plugin-search --cache-location .cache/prettier --check .",
+		"lint:format_": "prettier --cache-location .cache/prettier --check .",
 		"lint:md": "turbo run lint:md_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"lint:md_": "remark --frail --no-stdout --silently-ignore .",
 		"lint:svelte": "turbo run lint:svelte_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
@@ -54,10 +50,7 @@
 		"publint_": "publint dist",
 		"all": "turbo run all_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"format": "turbo run format_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"format_": "prettier --no-plugin-search --cache-location .cache/prettier --write .",
-		"postinstall": "svelte-kit sync",
-		"preview": "vite preview",
-		"start": "TARGET_ENV='local' vite",
+		"format_": "prettier --cache-location .cache/prettier --write .",
 		"test": "turbo run test_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"test_": "vitest --passWithNoTests --coverage --run",
 		"test:watch": "vitest --passWithNoTests --coverage"
@@ -65,30 +58,37 @@
 	"exports": {
 		".": {
 			"types": "./src/index.ts",
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
+			"import": "./src/index.js",
+			"svelte": "./src/index.js",
+			"default": "./src/index.js"
 		}
+	},
+	"dependencies": {
+		"svelte": "^4.0.5"
 	},
 	"peerDependencies": {
 		"rxjs": "*"
 	},
 	"devDependencies": {
-		"@alexaegis/eslint-config-vitest": "^0.3.1",
-		"@alexaegis/prettier-config": "^0.3.1",
-		"@alexaegis/prettier-config-svelte": "^0.3.1",
-		"@alexaegis/ts": "^0.3.1",
-		"@alexaegis/vite": "^0.3.1",
-		"@alexaegis/vitest": "^0.3.1",
-		"@sveltejs/kit": "^1.20.0",
-		"@testing-library/svelte": "^3.2.2",
-		"@types/node": "^20.2.5",
-		"eslint-plugin-svelte": "^2.29.0",
-		"publint": "^0.1.12",
-		"svelte": "^3.59.1",
-		"svelte-check": "^3.4.3",
+		"@alexaegis/eslint-config-svelte": "^0.5.1",
+		"@alexaegis/eslint-config-vitest": "^0.5.1",
+		"@alexaegis/prettier-config": "^0.5.1",
+		"@alexaegis/prettier-config-svelte": "^0.5.1",
+		"@alexaegis/ts": "^0.5.1",
+		"@alexaegis/vite": "^0.5.1",
+		"@alexaegis/vitest": "^0.5.1",
+		"@pakk/cli": "^0.4.2",
+		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/package": "^2.2.0",
+		"@sveltejs/vite-plugin-svelte": "^2.4.2",
+		"@testing-library/svelte": "^4.0.3",
+		"@types/node": "^20.4.2",
+		"eslint-plugin-svelte": "^2.32.2",
+		"publint": "^0.1.16",
+		"svelte": "^4.0.5",
+		"svelte-check": "^3.4.6",
 		"svelte-preprocess": "^5.0.4",
-		"vite": "^4.3.9",
-		"vite-plugin-autolib": "^0.1.4",
-		"vitest": "^0.31.2"
+		"vite": "^4.4.4",
+		"vitest": "^0.33.0"
 	}
 }

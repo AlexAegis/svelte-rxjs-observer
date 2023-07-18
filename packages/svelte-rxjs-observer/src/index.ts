@@ -1,2 +1,2 @@
-/// <reference types="svelte" />
-export * from './lib/index.js';
+export { default as Observer, default } from './lib/observer.svelte';
+export * from './lib/other/index.js';
