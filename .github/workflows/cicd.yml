@@ -7,7 +7,7 @@ on:
     branches: '**'
 
 env:
-  PAGES_DEPLOY_ARTIFACT_DIR: 'apps/example/dist'
+  PAGES_DEPLOY_ARTIFACT_DIR: 'apps/example/build'
   PAGES_DEPLOY_ARTIFACT_BUILDING_JOB: 'build'
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -171,6 +171,7 @@ jobs:
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage/lcov.info
+          language: typescript
       - name: upload coverage result to codecov
         uses: codecov/codecov-action@v3
         with:
