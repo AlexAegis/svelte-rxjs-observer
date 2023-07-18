@@ -1,6 +1,6 @@
 {
 	"name": "example",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"private": true,
 	"archetype": {
 		"platform": "web",
@@ -53,14 +53,14 @@
 		"svelte-rxjs-observer": "workspace:^"
 	},
 	"devDependencies": {
-		"@alexaegis/eslint-config-svelte": "^0.5.2",
-		"@alexaegis/eslint-config-vitest": "^0.5.2",
-		"@alexaegis/prettier-config": "^0.5.2",
-		"@alexaegis/prettier-config-svelte": "^0.5.2",
-		"@alexaegis/stylelint-config": "^0.5.2",
-		"@alexaegis/ts": "^0.5.2",
-		"@alexaegis/vite": "^0.5.2",
-		"@alexaegis/vitest": "^0.5.2",
+		"@alexaegis/eslint-config-svelte": "^0.5.3",
+		"@alexaegis/eslint-config-vitest": "^0.5.3",
+		"@alexaegis/prettier-config": "^0.5.3",
+		"@alexaegis/prettier-config-svelte": "^0.5.3",
+		"@alexaegis/stylelint-config": "^0.5.3",
+		"@alexaegis/ts": "^0.5.3",
+		"@alexaegis/vite": "^0.5.3",
+		"@alexaegis/vitest": "^0.5.3",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.22.3",
 		"@testing-library/svelte": "^4.0.3",

@@ -1,6 +1,14 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [0.4.0](https://github.com/AlexAegis/svelte-rxjs-observer/compare/v0.3.0...v0.4.0) (2023-07-18)
+
+
+### Features
+
+* migrate to autotool ([5ce7b19](https://github.com/AlexAegis/svelte-rxjs-observer/commit/5ce7b1914ac277e1c1bf598e55afb95fd4172189))
+* migrated to autotool and pakk ([b29bf13](https://github.com/AlexAegis/svelte-rxjs-observer/commit/b29bf1394a6470ca3383cfafd8a160d5845a6138))
 
 ## [0.3.0](https://github.com/AlexAegis/svelte-rxjs-observer/compare/v0.2.2...v0.3.0) (2022-10-26)
 

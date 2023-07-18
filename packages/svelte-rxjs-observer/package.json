@@ -1,7 +1,7 @@
 {
 	"name": "svelte-rxjs-observer",
 	"description": "A svelte component that makes observing observables easier",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"license": "MIT",
 	"private": false,
 	"archetype": {
@@ -70,12 +70,12 @@
 		"rxjs": "*"
 	},
 	"devDependencies": {
-		"@alexaegis/eslint-config-svelte": "^0.5.2",
-		"@alexaegis/eslint-config-vitest": "^0.5.2",
-		"@alexaegis/prettier-config": "^0.5.2",
-		"@alexaegis/prettier-config-svelte": "^0.5.2",
-		"@alexaegis/ts": "^0.5.2",
-		"@alexaegis/vitest": "^0.5.2",
+		"@alexaegis/eslint-config-svelte": "^0.5.3",
+		"@alexaegis/eslint-config-vitest": "^0.5.3",
+		"@alexaegis/prettier-config": "^0.5.3",
+		"@alexaegis/prettier-config-svelte": "^0.5.3",
+		"@alexaegis/ts": "^0.5.3",
+		"@alexaegis/vitest": "^0.5.3",
 		"@pakk/cli": "^0.4.2",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/package": "^2.2.0",
