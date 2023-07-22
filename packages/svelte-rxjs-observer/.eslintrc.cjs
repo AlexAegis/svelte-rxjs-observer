@@ -7,4 +7,12 @@ module.exports = {
 		'@alexaegis/eslint-config-svelte',
 		'@alexaegis/eslint-config-vitest',
 	],
+	overrides: [
+		{
+			files: '*.svelte',
+			rules: {
+				'no-undef': 'off',
+			},
+		},
+	],
 };

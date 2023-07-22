@@ -1,32 +1,61 @@
 <script lang="ts">
 	import { CodeBlock } from '@skeletonlabs/skeleton';
-	import { Subject, Subscription } from 'rxjs';
+	import { Observable, Subject, Subscription, map } from 'rxjs';
 	import packageJson from '../../../../package.json';
 
 	import { onDestroy } from 'svelte';
 	import { Observer } from 'svelte-rxjs-observer';
 
 	let count = 0;
-	let subject = new Subject<number>();
+
+	let subject: Subject<number>;
+	let observable: Observable<number>;
 
 	function reset() {
 		count = 0;
-		subject = new Subject();
+		subject = new Subject<number>();
+		observable = subject.pipe(
+			map((c) => {
+				if (typeof c !== 'number') {
+					// eslint-disable-next-line unicorn/prefer-type-error
+					throw new Error('Not a number!');
+				}
+				return c;
+			}),
+		);
+	}
+	reset();
+	function next() {
+		count += 1;
+		subject.next(count);
+	}
+
+	function error() {
+		// I'm not using subject.error because that will leak the error to the console regardless
+		// if the pipe has a catchError or not. `reportUnhandledError` will report it.
+		subject.next("I'm a lie" as unknown as number);
+	}
+
+	function stringify(o: object): string {
+		return JSON.stringify(o, undefined, 2);
 	}
 
 	let subjectState: 'cold' | 'hot' | 'completed' | 'errored';
 	let subscription: Subscription | undefined;
+
 	$: {
 		if (subscription) {
 			subscription.unsubscribe();
 		}
 		subjectState = 'cold';
-		subscription = subject.subscribe({
+		subscription = observable.subscribe({
 			next: () => (subjectState = 'hot'),
 			error: () => (subjectState = 'errored'),
 			complete: () => (subjectState = 'completed'),
 		});
 	}
+
+	let errorType: TypeError;
 
 	onDestroy(() => subscription?.unsubscribe());
 </script>
@@ -48,7 +77,7 @@
 			class="btn {subjectState === 'errored' || subjectState === 'completed'
 				? 'variant-ghost'
 				: 'variant-filled'}"
-			on:click="{() => subject.next((count = count + 1))}"
+			on:click="{next}"
 		>
 			Next
 		</button>
@@ -59,7 +88,7 @@
 				: subjectState === 'completed'
 				? 'variant-ghost'
 				: 'variant-filled'}"
-			on:click="{() => subject.error('Error message')}"
+			on:click="{error}"
 		>
 			Error
 		</button>
@@ -78,16 +107,16 @@
 
 	<h2 class="h4">Value with the Observer component</h2>
 	<code class="code">
-		<Observer observable="{subject}" let:next>
-			{JSON.stringify({ next }, undefined, 2)}
+		<Observer {observable} let:next {errorType}>
+			{stringify({ next })}
 			<svelte:fragment slot="pending">
-				{JSON.stringify({ slot: 'pending' }, undefined, 2)}
+				{stringify({ slot: 'pending' })}
 			</svelte:fragment>
 			<svelte:fragment slot="error" let:error let:last>
-				{JSON.stringify({ slot: 'error', error, last }, undefined, 2)}
+				{stringify({ slot: 'error', error: { message: error.message }, last })}
 			</svelte:fragment>
 			<svelte:fragment slot="completed" let:last>
-				{JSON.stringify({ slot: 'completed', last }, undefined, 2)}
+				{stringify({ slot: 'completed', last })}
 			</svelte:fragment>
 		</Observer>
 	</code>
@@ -99,16 +128,16 @@
 	<CodeBlock
 		language="html"
 		code="{`
-<Observer observable="{subject}" let:next>
-	{JSON.stringify({ next })}
+<Observer {observable} let:next {errorType}>
+	{stringify({ next })}
 	<svelte:fragment slot="pending">
-		{JSON.stringify({ slot: 'pending' })}
+		{stringify({ slot: 'pending' })}
 	</svelte:fragment>
 	<svelte:fragment slot="error" let:error let:last>
-		{JSON.stringify({ slot: 'error', error, last })}
+		{stringify({ slot: 'error', error: { message: error.message }, last })}
 	</svelte:fragment>
 	<svelte:fragment slot="completed" let:last>
-		{JSON.stringify({ slot: 'completed', last })}
+		{stringify({ slot: 'completed', last })}
 	</svelte:fragment>
 </Observer>
 		`}"

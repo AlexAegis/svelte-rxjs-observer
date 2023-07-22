@@ -1,10 +1,6 @@
-<script lang="ts">
+<script lang="ts" generics="T, E">
 	import type { Observable, Subscription } from 'rxjs';
 	import { onDestroy } from 'svelte';
-
-	// Old generic syntax, remove once the <script lang="ts" generics="T"> is
-	// properly supported by https://github.com/sveltejs/eslint-plugin-svelte/issues/521
-	type T = $$Generic;
 
 	interface $$Slots {
 		default: {
@@ -12,7 +8,7 @@
 		};
 		error: {
 			last: T;
-			error: unknown;
+			error: E;
 		};
 		pending: unknown;
 		completed: {
@@ -21,18 +17,20 @@
 	}
 
 	export let observable: Observable<T> | undefined | null;
+	export let errorType: E = undefined as E; // For generic inference only
 
 	let completed = false;
 	let pending = true;
 	let next!: T;
-	let error: unknown = undefined;
+	let error: E;
 
 	let subscription: Subscription | undefined;
 
 	$: {
+		errorType = undefined as E; // Just so it's not unused
 		completed = false;
 		pending = true;
-		error = undefined;
+		error = undefined as E;
 		next = undefined as T;
 		if (subscription) {
 			subscription.unsubscribe();

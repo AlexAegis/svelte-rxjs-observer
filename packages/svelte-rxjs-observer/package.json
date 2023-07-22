@@ -61,7 +61,8 @@
 			"import": "./src/index.js",
 			"svelte": "./src/index.js",
 			"default": "./src/index.js"
-		}
+		},
+		"./readme": "./readme.md"
 	},
 	"dependencies": {
 		"svelte": "~4.1.1"
