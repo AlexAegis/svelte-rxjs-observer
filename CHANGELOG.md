@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0](https://github.com/AlexAegis/svelte-rxjs-observer/compare/v0.4.0...v0.5.0) (2023-07-22)
+
+
+### Features
+
+* example app now uses skeletonui and has code blocks ([d47752b](https://github.com/AlexAegis/svelte-rxjs-observer/commit/d47752b1a886877534c01968ad4f0c3ec3593112))
+* made the example page a little more interesting ([97a58fb](https://github.com/AlexAegis/svelte-rxjs-observer/commit/97a58fbd963ae99fb534f4caba5ab43d5be0b72e))
+* **svelte-rxjs-observer:** typed errors ([55da6ce](https://github.com/AlexAegis/svelte-rxjs-observer/commit/55da6ce668d32c5ae4d234706550be12647ab7f2))
+
 ## [0.4.0](https://github.com/AlexAegis/svelte-rxjs-observer/compare/v0.3.0...v0.4.0) (2023-07-18)
 
 
