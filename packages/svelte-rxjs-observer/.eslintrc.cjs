@@ -1,4 +1,4 @@
-// managed-by-autotool
+// TODO: reenable -by-autotool
 
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
