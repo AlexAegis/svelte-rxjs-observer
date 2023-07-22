@@ -6,7 +6,7 @@
 	export let subject: Subject<string> | undefined | null;
 </script>
 
-<Observer observable={subject} let:next>
+<Observer observable="{subject}" let:next>
 	{next}
 	<svelte:fragment slot="pending">pending</svelte:fragment>
 	<svelte:fragment slot="error" let:error let:last>
