@@ -45,11 +45,15 @@
 		"watch-deps": "TARGET_ENV='local' nodemon --config ../../node_modules/@alexaegis/autotool-plugin-vite/static/nodemon.json --watch ./node_modules/**/src/**/* --ext ts,tsx,mts,cts,svelte,js,jsx,mjs,cjs,json --ignore dist --exec 'turbo run build-lib_ --concurrency 16 --cache-dir .cache/turbo --filter example'"
 	},
 	"dependencies": {
+		"@skeletonlabs/skeleton": "^1.10.0",
+		"autoprefixer": "^10.4.14",
 		"carbon-components-svelte": "^0.78.0",
 		"carbon-icons-svelte": "^12.1.0",
+		"highlight.js": "^11.8.0",
 		"rxjs": "^7.8.1",
 		"svelte": "^4.1.1",
-		"svelte-rxjs-observer": "workspace:^"
+		"svelte-rxjs-observer": "workspace:^",
+		"tailwindcss": "^3.3.3"
 	},
 	"devDependencies": {
 		"@alexaegis/eslint-config-svelte": "^0.5.12",

@@ -64,7 +64,7 @@
 		}
 	},
 	"dependencies": {
-		"svelte": "^4.1.1"
+		"svelte": "~4.1.1"
 	},
 	"peerDependencies": {
 		"rxjs": "*"
