@@ -1,0 +1,9 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"ignoreCommand": "npx turbo-ignore example --task=build-app_",
+	"buildCommand": "pnpm run build",
+	"framework": "sveltekit",
+	"outputDirectory": "apps/example/",
+	"installCommand": "pnpm install",
+	"devCommand": "pnpm run start"
+}
