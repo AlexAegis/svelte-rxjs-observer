@@ -1,5 +1,5 @@
 {
-	"$schema": "https://turborepo.org/schema.json?mark=managed-by-autotool",
+	"$schema": "https://turborepo.org/schema.json",
 	"globalDependencies": [
 		".config/*",
 		".env",
@@ -99,7 +99,7 @@
 		},
 		"build-app_": {
 			"dependsOn": ["^build-lib_"],
-			"env": ["BASE_HREF", "BUILD_REASON", "PLATFORM", "TARGET_ENV"],
+			"env": ["BASE_HREF", "BUILD_REASON", "PLATFORM", "TARGET_ENV", "VERCEL"],
 			"inputs": [
 				"!vite*.config.*.*",
 				"!{src,static,public}/**/*.spec.{ts,js,tsx,jsx}",
@@ -107,7 +107,7 @@
 				"{src,static,public}/**/*"
 			],
 			"outputMode": "new-only",
-			"outputs": [".svelte-kit/**", "build/**", "dist/**"]
+			"outputs": [".svelte-kit/**", "build/**", "dist/**", ".vercel/**"]
 		},
 		"build-lib_": {
 			"dependsOn": ["^build-lib_"],
@@ -222,6 +222,7 @@
 		},
 		"start": {
 			"cache": false,
+			"persistent": true,
 			"passThroughEnv": ["BUILD_REASON"]
 		},
 		"test_": {
