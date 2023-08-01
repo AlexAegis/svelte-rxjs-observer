@@ -148,7 +148,7 @@
 		{$subject}
 	</code>
 
-	<CodeBlock language="html" code="{`{$subject}`}" />
+	<CodeBlock language="html" code="{'{$subject}'}" />
 
 	<aside class="aside card variant-glass p-2">
 		With a regular <code>$</code> you won't get access to the error or completion states of an observable,
