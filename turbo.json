@@ -1,5 +1,5 @@
 {
-	"$schema": "https://turborepo.org/schema.json",
+	"$schema": "https://turborepo.org/schema.json?mark=managed-by-autotool",
 	"globalDependencies": [
 		".config/*",
 		".env",
@@ -107,7 +107,8 @@
 				"{src,static,public}/**/*"
 			],
 			"outputMode": "new-only",
-			"outputs": [".svelte-kit/**", "build/**", "dist/**", ".vercel/**"]
+			"outputs": [".svelte-kit/**", "build/**", "dist/**", ".vercel/**"],
+			"passThroughEnv": []
 		},
 		"build-lib_": {
 			"dependsOn": ["^build-lib_"],
@@ -119,10 +120,14 @@
 				"{src,static,public}/**/*"
 			],
 			"outputMode": "new-only",
-			"outputs": [".svelte-kit/**", "build/**", "dist/**"]
+			"outputs": [".svelte-kit/**", "build/**", "dist/**"],
+			"passThroughEnv": ["PLATFORM"]
 		},
-		"dev": {
-			"cache": false
+		"dev_": {
+			"cache": false,
+			"dependsOn": ["^build-lib_"],
+			"passThroughEnv": ["BUILD_REASON"],
+			"persistent": true
 		},
 		"format_": {
 			"cache": false,
@@ -220,10 +225,11 @@
 			"outputs": [],
 			"passThroughEnv": ["BASE_HREF", "PLATFORM", "TARGET_ENV"]
 		},
-		"start": {
+		"start_": {
 			"cache": false,
-			"persistent": true,
-			"passThroughEnv": ["BUILD_REASON"]
+			"dependsOn": ["^build-lib_"],
+			"passThroughEnv": ["BUILD_REASON"],
+			"persistent": true
 		},
 		"test_": {
 			"dependsOn": ["^build-lib_"],
