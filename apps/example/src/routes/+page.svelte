@@ -86,8 +86,8 @@
 			class="btn {subjectState === 'errored'
 				? 'variant-ghost-error'
 				: subjectState === 'completed'
-				? 'variant-ghost'
-				: 'variant-filled'}"
+					? 'variant-ghost'
+					: 'variant-filled'}"
 			on:click="{error}"
 		>
 			Error
@@ -97,8 +97,8 @@
 			class="btn {subjectState === 'errored'
 				? 'variant-ghost'
 				: subjectState === 'completed'
-				? 'variant-ghost-tertiary'
-				: 'variant-filled'}"
+					? 'variant-ghost-tertiary'
+					: 'variant-filled'}"
 			on:click="{() => subject.complete()}"
 		>
 			Complete
@@ -163,8 +163,7 @@
 		flex-direction: column;
 		gap: 1em;
 		margin: auto;
-		justify-content: center;
-		align-content: center;
+		place-content: center;
 		width: 40em;
 		margin-top: 2em;
 	}

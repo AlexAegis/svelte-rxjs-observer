@@ -32,8 +32,6 @@
 	},
 	"type": "module",
 	"scripts": {
-		"build": "turbo run build-lib_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"build-lib_": "pakk --svelte --target-package-json-kind development && svelte-package --input src && pakk --svelte --target-package-json-kind distribution",
 		"lint:depcheck": "turbo run lint:depcheck_ --concurrency 6 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"lint:depcheck__": "depcheck",
 		"lint:es": "turbo run lint:es_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
@@ -48,12 +46,14 @@
 		"lint:tsc_": "tsc --noEmit",
 		"publint": "BUILD_REASON='publish' turbo run publint_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"publint_": "publint dist",
-		"all": "BUILD_REASON='publish' turbo run all_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"format": "turbo run format_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
-		"format_": "prettier --cache-location .cache/prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write .",
 		"test": "turbo run test_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
 		"test_": "vitest --passWithNoTests --coverage --run",
-		"test:watch": "vitest --passWithNoTests --coverage"
+		"test:watch": "vitest --passWithNoTests --coverage",
+		"all": "BUILD_REASON='publish' turbo run all_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"build": "turbo run build-lib_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"build-lib_": "pakk --svelte --target-package-json-kind development && svelte-package --input src && pakk --svelte --target-package-json-kind distribution",
+		"format": "turbo run format_ --concurrency 16 --cache-dir .cache/turbo --filter svelte-rxjs-observer",
+		"format_": "prettier --cache-location .cache/prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
 	},
 	"exports": {
 		".": {
@@ -65,30 +65,30 @@
 		"./readme": "./readme.md"
 	},
 	"dependencies": {
-		"svelte": "^4.2.0"
+		"svelte": "^4.2.12"
 	},
 	"peerDependencies": {
 		"rxjs": "^7.8.1"
 	},
 	"devDependencies": {
-		"@alexaegis/eslint-config-svelte": "^0.8.0",
-		"@alexaegis/eslint-config-vitest": "^0.8.0",
-		"@alexaegis/prettier-config": "^0.8.0",
+		"@alexaegis/eslint-config-svelte": "^0.10.4",
+		"@alexaegis/eslint-config-vitest": "^0.10.4",
+		"@alexaegis/prettier-config": "^0.10.4",
 		"@alexaegis/prettier-config-svelte": "^0.5.4",
-		"@alexaegis/svelte-config": "^0.8.0",
-		"@alexaegis/ts": "^0.8.0",
-		"@alexaegis/vitest": "^0.8.0",
-		"@pakk/cli": "^0.6.0",
-		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/package": "^2.2.2",
-		"@sveltejs/vite-plugin-svelte": "^2.4.5",
-		"@testing-library/svelte": "^4.0.3",
-		"@types/node": "^20.5.7",
-		"eslint-plugin-svelte": "^2.33.0",
-		"publint": "^0.2.2",
-		"svelte": "^4.2.0",
-		"svelte-check": "^3.5.1",
-		"svelte-preprocess": "^5.0.4",
-		"vitest": "^0.34.3"
+		"@alexaegis/svelte-config": "^0.10.4",
+		"@alexaegis/ts": "^0.10.4",
+		"@alexaegis/vitest": "^0.10.4",
+		"@pakk/cli": "^0.9.0",
+		"@sveltejs/adapter-auto": "^3.1.1",
+		"@sveltejs/package": "^2.3.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.2",
+		"@testing-library/svelte": "^4.1.0",
+		"@types/node": "^20.11.30",
+		"eslint-plugin-svelte": "^2.35.1",
+		"publint": "^0.2.7",
+		"svelte": "^4.2.12",
+		"svelte-check": "^3.6.8",
+		"svelte-preprocess": "^5.1.3",
+		"vitest": "^1.4.0"
 	}
 }
