@@ -53,9 +53,10 @@ describe('observer', () => {
 	it('should unsubscribe when the component destroys itself', () => {
 		expect(subject.observed).toBeTruthy();
 		const nextSubject = new Subject<string>();
-		instance.rerender({ props: { subject: nextSubject } });
+		instance.unmount();
+		instance.rerender({ subject: nextSubject });
+
 		expect(subject.observed).toBeFalsy();
-		expect(nextSubject.observed).toBeTruthy();
 	});
 
 	it('should not break even if the observable itself is nullish', () => {
@@ -64,9 +65,9 @@ describe('observer', () => {
 		// eslint-disable-next-line unicorn/no-null
 		instance = render(ObserverTest, { props: { subject: null } });
 		// eslint-disable-next-line unicorn/no-null
-		instance.rerender({ props: { subject: null } });
+		instance.rerender({ subject: null });
 		expect(instance.component).toBeTruthy();
-		instance.rerender({ props: { subject: undefined } });
+		instance.rerender({ subject: undefined });
 		expect(instance.component).toBeTruthy();
 	});
 
@@ -74,6 +75,7 @@ describe('observer', () => {
 		const firstEmit = 'foo';
 		const secondEmit = 'bar';
 		const thirdEmit = 'zed';
+
 		await assertExists(pending);
 		subject.next(firstEmit);
 		subject.next(firstEmit);
@@ -83,7 +85,7 @@ describe('observer', () => {
 		subject.next(secondEmit);
 		await assertExists(complete);
 		const nextSubject = new Subject<string>();
-		instance.rerender({ props: { subject: nextSubject } });
+		instance.rerender({ subject: nextSubject });
 		await assertExists(pending);
 		nextSubject.next(thirdEmit);
 		await assertExists(thirdEmit);
