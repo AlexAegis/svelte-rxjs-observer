@@ -30,7 +30,7 @@ npm install svelte-rxjs-observer
   let subject = new Subject<number>();
 </script>
 
-<Observer {subject} let:next>
+<Observer observable={subject} let:next>
   {next}
   <svelte:fragment slot="pending">loading...</svelte:fragment>
 </Observer>
@@ -44,10 +44,11 @@ npm install svelte-rxjs-observer
   import { Observer } from 'svelte-rxjs-observer';
 
   let subject = new Subject<number>();
-  let errorType: TypeError; // Optinal typehint for the error
+  const errorType = undefined as unknown as TypeError; // Optional typehint for the error
+  const stringify = (o: object) => JSON.stringify(o, undefined, 2);
 </script>
 
-<Observer {subject} let:next {errorType}>
+<Observer observable={subject} let:next {errorType}>
   {stringify({ next })}
   <svelte:fragment slot="pending">
     {stringify({ slot: 'pending' })}

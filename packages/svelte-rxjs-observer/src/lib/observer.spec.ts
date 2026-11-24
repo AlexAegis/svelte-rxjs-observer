@@ -50,24 +50,32 @@ describe('observer', () => {
 		await assertExists(secondEmit);
 	});
 
-	it('should unsubscribe when the component destroys itself', () => {
+	it('should display the pending slot again after an errored observable is replaced', async () => {
+		subject.error(error);
+		await assertExists(error);
+		await instance.rerender({ subject: new Subject<string>() });
+		await assertExists(pending);
+		expect(instance.queryByText(error)).toBeNull();
+	});
+
+	it('should unsubscribe when the component destroys itself', async () => {
 		expect(subject.observed).toBeTruthy();
 		const nextSubject = new Subject<string>();
 		instance.unmount();
-		instance.rerender({ subject: nextSubject });
+		await instance.rerender({ subject: nextSubject });
 
 		expect(subject.observed).toBeFalsy();
 	});
 
-	it('should not break even if the observable itself is nullish', () => {
+	it('should not break even if the observable itself is nullish', async () => {
 		instance.unmount();
 		// ? Explicitly checking nulls
 		// eslint-disable-next-line unicorn/no-null
 		instance = render(ObserverTest, { props: { subject: null } });
 		// eslint-disable-next-line unicorn/no-null
-		instance.rerender({ subject: null });
+		await instance.rerender({ subject: null });
 		expect(instance.component).toBeTruthy();
-		instance.rerender({ subject: undefined });
+		await instance.rerender({ subject: undefined });
 		expect(instance.component).toBeTruthy();
 	});
 
@@ -85,7 +93,7 @@ describe('observer', () => {
 		subject.next(secondEmit);
 		await assertExists(complete);
 		const nextSubject = new Subject<string>();
-		instance.rerender({ subject: nextSubject });
+		await instance.rerender({ subject: nextSubject });
 		await assertExists(pending);
 		nextSubject.next(thirdEmit);
 		await assertExists(thirdEmit);

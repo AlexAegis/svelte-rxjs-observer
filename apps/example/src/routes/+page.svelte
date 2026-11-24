@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CodeBlock } from '@skeletonlabs/skeleton';
+	import hljs from 'highlight.js';
 	import { Observable, Subject, Subscription, map } from 'rxjs';
 	import packageJson from '../../../../package.json';
 
@@ -55,9 +55,27 @@
 		});
 	}
 
-	let errorType: TypeError;
+	const errorType = undefined as unknown as TypeError;
 
 	onDestroy(() => subscription?.unsubscribe());
+
+	// eslint-disable-next-line unicorn/no-incorrect-template-string-interpolation
+	const observerCode = `<Observer {observable} let:next {errorType}>
+	{stringify({ next })}
+	<svelte:fragment slot="pending">
+		{stringify({ slot: 'pending' })}
+	</svelte:fragment>
+	<svelte:fragment slot="error" let:error let:last>
+		{stringify({ slot: 'error', error: { message: error.message }, last })}
+	</svelte:fragment>
+	<svelte:fragment slot="completed" let:last>
+		{stringify({ slot: 'completed', last })}
+	</svelte:fragment>
+</Observer>`;
+
+	function highlight(node: HTMLElement) {
+		hljs.highlightElement(node);
+	}
 </script>
 
 <div class="app">
@@ -66,47 +84,47 @@
 		<button
 			type="button"
 			class="btn {subjectState === 'errored' || subjectState === 'completed'
-				? 'variant-filled-primary'
-				: 'variant-ghost'}"
-			on:click="{reset}"
+				? 'preset-filled-primary-500'
+				: 'preset-outlined-surface-500'}"
+			on:click={reset}
 		>
 			Reset
 		</button>
 		<button
 			type="button"
 			class="btn {subjectState === 'errored' || subjectState === 'completed'
-				? 'variant-ghost'
-				: 'variant-filled'}"
-			on:click="{next}"
+				? 'preset-outlined-surface-500'
+				: 'preset-filled'}"
+			on:click={next}
 		>
 			Next
 		</button>
 		<button
 			type="button"
 			class="btn {subjectState === 'errored'
-				? 'variant-ghost-error'
+				? 'preset-outlined-error-500'
 				: subjectState === 'completed'
-					? 'variant-ghost'
-					: 'variant-filled'}"
-			on:click="{error}"
+					? 'preset-outlined-surface-500'
+					: 'preset-filled'}"
+			on:click={error}
 		>
 			Error
 		</button>
 		<button
 			type="button"
 			class="btn {subjectState === 'errored'
-				? 'variant-ghost'
+				? 'preset-outlined-surface-500'
 				: subjectState === 'completed'
-					? 'variant-ghost-tertiary'
-					: 'variant-filled'}"
-			on:click="{() => subject.complete()}"
+					? 'preset-outlined-tertiary-500'
+					: 'preset-filled'}"
+			on:click={() => subject.complete()}
 		>
 			Complete
 		</button>
 	</div>
 
 	<h2 class="h4">Value with the Observer component</h2>
-	<code class="code">
+	<code class="pre">
 		<Observer {observable} let:next {errorType}>
 			{stringify({ next })}
 			<svelte:fragment slot="pending">
@@ -121,36 +139,20 @@
 		</Observer>
 	</code>
 
-	<aside class="aside card variant-glass p-2">
+	<aside class="card preset-tonal-surface p-2">
 		After an 'error' or a 'complete' emission, an observable won't emit anymore
 	</aside>
 
-	<CodeBlock
-		language="html"
-		code="{`
-<Observer {observable} let:next {errorType}>
-	{stringify({ next })}
-	<svelte:fragment slot="pending">
-		{stringify({ slot: 'pending' })}
-	</svelte:fragment>
-	<svelte:fragment slot="error" let:error let:last>
-		{stringify({ slot: 'error', error: { message: error.message }, last })}
-	</svelte:fragment>
-	<svelte:fragment slot="completed" let:last>
-		{stringify({ slot: 'completed', last })}
-	</svelte:fragment>
-</Observer>
-		`}"
-	/>
+	<pre class="pre"><code class="language-html" use:highlight>{observerCode}</code></pre>
 
 	<h2 class="h4">Value with regular store subscription:</h2>
-	<code class="code">
+	<code class="pre">
 		{$subject}
 	</code>
 
-	<CodeBlock language="html" code="{'{$subject}'}" />
+	<pre class="pre"><code class="language-html" use:highlight>{'{$subject}'}</code></pre>
 
-	<aside class="aside card variant-glass p-2">
+	<aside class="card preset-tonal-surface p-2">
 		With a regular <code>$</code> you won't get access to the error or completion states of an observable,
 		nor do you have a fallback if it haven't yet emitted (Which is not a possible scenario for signal
 		like structures that are more similar to BehaviorSubjects).

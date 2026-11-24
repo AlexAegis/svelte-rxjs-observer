@@ -1,36 +1,29 @@
 <script>
 	// Most of your app wide CSS should be put in this file
-	import { AppBar, AppShell, storeHighlightJs } from '@skeletonlabs/skeleton';
-	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
 	import packageJson from '../../../../package.json';
-	import '../app.postcss';
-	storeHighlightJs.set(hljs);
+	import '../app.css';
 </script>
 
-<AppShell>
-	<svelte:fragment slot="header">
-		<AppBar>
-			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">{packageJson.name}</strong>
-			</svelte:fragment>
-			<svelte:fragment slot="trail">
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="{packageJson.homepage}"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a>
-			</svelte:fragment>
-		</AppBar>
-	</svelte:fragment>
+<div class="flex h-full flex-col">
+	<header class="preset-filled-surface-100-900 flex items-center justify-between p-4">
+		<strong class="text-xl uppercase">{packageJson.name}</strong>
+		<a
+			class="btn btn-sm preset-outlined-surface-500"
+			href="https://github.com/AlexAegis/svelte-rxjs-observer"
+			target="_blank"
+			rel="noreferrer"
+		>
+			GitHub
+		</a>
+	</header>
 
-	<div class="main-layout">
-		<slot />
-	</div>
-</AppShell>
+	<main class="flex-1 overflow-y-auto">
+		<div class="main-layout">
+			<slot />
+		</div>
+	</main>
+</div>
 
 <style>
 	.main-layout {

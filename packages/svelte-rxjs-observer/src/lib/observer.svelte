@@ -1,26 +1,13 @@
 <script lang="ts" generics="T, E">
+	/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 	import type { Observable, Subscription } from 'rxjs';
 	import { onDestroy } from 'svelte';
-
-	interface $$Slots {
-		default: {
-			next: T;
-		};
-		error: {
-			last: T;
-			error: E;
-		};
-		pending: unknown;
-		completed: {
-			last: T;
-		};
-	}
 
 	export let observable: Observable<T> | undefined | null;
 	export let errorType: E = undefined as E; // For generic inference only
 
-	let completed = false;
-	let pending = true;
+	let completed: boolean;
+	let pending: boolean;
 	let next!: T;
 	let error: E;
 
@@ -51,9 +38,9 @@
 </script>
 
 {#if completed}
-	<slot name="completed" last="{next}" />
+	<slot name="completed" last={next} />
 {:else if error}
-	<slot name="error" {error} last="{next}" />
+	<slot name="error" {error} last={next} />
 {:else if pending}
 	<slot name="pending" />
 {:else}
